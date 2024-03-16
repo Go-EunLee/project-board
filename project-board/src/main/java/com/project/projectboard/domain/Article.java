@@ -31,22 +31,36 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter @Column(nullable = false) private String title;
-    @Setter @Column(nullable = false, length = 10000) private String content;
+    @Setter
+    @Column(nullable = false)
+    private String title;
+    @Setter
+    @Column(nullable = false, length = 10000)
+    private String content;
 
-    @Setter private String hashtag;
+    @Setter
+    private String hashtag;
 
     @OrderBy("id")
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     @ToString.Exclude
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 
-    @CreatedDate @Column(nullable = false) private LocalDateTime createdAt;
-    @CreatedBy @Column(nullable = false, length = 100) private String createdBy;
-    @LastModifiedDate @Column(nullable = false) private LocalDateTime modifiedAt;
-    @LastModifiedBy @Column(nullable = false, length = 100) private String modifiedBy;
+    @CreatedDate
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+    @CreatedBy
+    @Column(nullable = false, length = 100)
+    private String createdBy;
+    @LastModifiedDate
+    @Column(nullable = false)
+    private LocalDateTime modifiedAt;
+    @LastModifiedBy
+    @Column(nullable = false, length = 100)
+    private String modifiedBy;
 
-    protected Article(){}
+    protected Article() {
+    }
 
     private Article(String title, String content, String hashtag) {
         this.title = title;
@@ -69,3 +83,4 @@ public class Article {
     public int hashCode() {
         return Objects.hash(id);
     }
+}
